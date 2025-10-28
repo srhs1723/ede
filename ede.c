@@ -57,16 +57,16 @@ typedef enum {
 
 /* Syntax token types */
 typedef enum {
-    TOKEN_NORMAL,
-    TOKEN_KEYWORD,
-    TOKEN_STRING,
-    TOKEN_COMMENT,
-    TOKEN_NUMBER,
-    TOKEN_OPERATOR,
-    TOKEN_PREPROCESSOR,
-    TOKEN_FUNCTION,
-    TOKEN_TYPE
-} TokenType;
+    STOKEN_NORMAL,
+    STOKEN_KEYWORD,
+    STOKEN_STRING,
+    STOKEN_COMMENT,
+    STOKEN_NUMBER,
+    STOKEN_OPERATOR,
+    STOKEN_PREPROCESSOR,
+    STOKEN_FUNCTION,
+    STOKEN_TYPE
+} SyntaxTokenType;
 
 /* Search direction */
 typedef enum {
@@ -114,7 +114,7 @@ typedef struct {
 /* Syntax highlighting rule */
 typedef struct {
     char *pattern;
-    TokenType type;
+    SyntaxTokenType type;
     int color;
 } SyntaxRule;
 
@@ -320,6 +320,10 @@ void log_message(const char *fmt, ...);
 FileBuffer* get_current_buffer(void);
 void update_line_count(FileBuffer *fb);
 void apply_syntax_highlighting(FileBuffer *fb);
+char* buffer_get_line(GapBuffer *buf, int line_num, int *line_len);
+void buffer_insert_char(GapBuffer *buf, char c, size_t pos);
+void buffer_delete_char(GapBuffer *buf, size_t pos);
+void buffer_save_file(GapBuffer *buf, const char *filepath);
 
 /* ==== UTILITY FUNCTIONS ==== */
 
@@ -331,11 +335,11 @@ char* str_duplicate(const char *str) {
     return dup;
 }
 
-int min(int a, int b) {
+int ede_min(int a, int b) {
     return a < b ? a : b;
 }
 
-int max(int a, int b) {
+int ede_max(int a, int b) {
     return a > b ? a : b;
 }
 
