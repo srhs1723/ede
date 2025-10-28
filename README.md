@@ -53,7 +53,7 @@ Enable with **Ctrl-C → Ctrl-M**:
 
 ## Installation
 
-### Compile from source:
+### Linux / macOS:
 ```bash
 git clone https://github.com/srhs1723/ede.git
 cd ede
@@ -62,8 +62,27 @@ gcc ede.c -o ede
 
 ### Windows:
 ```powershell
+git clone https://github.com/srhs1723/ede.git
+cd ede
 gcc ede.c -o ede.exe
 ```
+
+### Termux (Android):
+```bash
+# Install dependencies
+pkg update
+pkg install git clang
+
+# Clone and build
+git clone https://github.com/srhs1723/ede.git
+cd ede
+clang ede.c -o ede
+
+# Run
+./ede filename.txt
+```
+
+**Note:** On Termux, ede works perfectly with the Android terminal environment. All features including arrow keys, syntax highlighting, and module system are fully functional.
 
 ## Usage
 
@@ -142,13 +161,25 @@ exec("echo Success!");
 - `set variable = value` - Variables
 - Control flow: `if`, `else`, `while`, `for`
 
+## Platform Support
+
+### Android (Termux)
+ede is **fully compatible** with Termux on Android:
+- ✅ Works out of the box with `clang`
+- ✅ Full VT100 escape sequence support
+- ✅ Touch-friendly with hardware keyboard
+- ✅ All editing features work seamlessly
+- ✅ Module system fully functional
+- ✅ Git integration works with Termux git
+- ✅ Can edit files in Termux storage (`~/storage`)
+
 ## Building
 
 Requires only standard C compiler (gcc, clang, msvc):
 - C99 or later
 - No external dependencies
 - ~3500 lines of code
-- Cross-platform compatible
+- Cross-platform compatible (Windows, Linux, macOS, Android)
 
 ## Architecture
 
