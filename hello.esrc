@@ -1,0 +1,15 @@
+// GNU ede module script - hello.esrc
+// This module prints a greeting and shows editor info
+
+print("Hello from ede module!");
+print("Module system is working!");
+
+// Get editor information
+editor linecount;
+editor filename;
+
+// Search for a pattern
+search("test");
+
+// Execute a system command
+exec("echo Module executed successfully");

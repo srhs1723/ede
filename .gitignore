@@ -1,0 +1,31 @@
+# Compiled binaries
+ede
+ede.exe
+*.o
+*.out
+*.obj
+
+# Module files (compiled)
+*.emod
+
+# Test files
+test.txt
+test.c
+
+# Python helper scripts
+fix_tokens.py
+
+# Editor backup files
+*~
+*.swp
+*.swo
+.*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
