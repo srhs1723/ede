@@ -1,0 +1,32 @@
+# Build artifacts
+ede
+ede.exe
+*.o
+*.obj
+*.emod
+*.a
+*.lib
+
+# Logs
+*.log
+.ede.log
+.ede_debug.log
+
+# Backup files
+*.bak
+.ede_backup/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Session files
+*.ede
