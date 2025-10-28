@@ -1696,7 +1696,7 @@ void terminal_cleanup(void) {
 }
 
 void terminal_clear(void) {
-    printf("\033[2J\033[H");
+    printf("\033[H");  /* Move cursor to home without clearing */
 }
 
 int terminal_get_key(void) {
@@ -1745,7 +1745,11 @@ void editor_cleanup(void) {
 }
 
 void editor_refresh_screen(void) {
-    terminal_clear();
+    /* Hide cursor during refresh */
+    printf("\033[?25l");
+    
+    /* Move to home position */
+    printf("\033[H");
     
     /* Draw tabs */
     printf("\033[7m");
@@ -1756,6 +1760,7 @@ void editor_refresh_screen(void) {
             printf(" %d:%s ", i + 1, g_state.tabs[i].name);
         }
     }
+    printf("\033[K");  /* Clear to end of line */
     printf("\033[0m\n");
     
     /* Draw file content */
@@ -1767,14 +1772,16 @@ void editor_refresh_screen(void) {
             int line_len;
             char *line = buffer_get_line(fb->buffer, i + fb->row_offset, &line_len);
             if (line) {
-                printf("%s\n", line);
+                printf("%s", line);
             } else {
-                printf("~\n");
+                printf("~");
             }
+            printf("\033[K\n");  /* Clear to end of line after each line */
         }
         
         /* Status bar */
-        printf("\033[7m%-*s\033[0m\n", g_state.screen_cols, g_state.status_message);
+        printf("\033[7m%-*s\033[0m", g_state.screen_cols, g_state.status_message);
+        printf("\033[K\n");  /* Clear rest of status line */
         
         /* Command line */
         if (g_state.mode == MODE_EXIT_CONFIRM) {
@@ -1786,7 +1793,16 @@ void editor_refresh_screen(void) {
                    fb->modified ? "[+]" : "",
                    fb->filepath ? fb->filepath : "[No Name]");
         }
+        printf("\033[K");  /* Clear to end of line */
+        
+        /* Position cursor at edit location */
+        int screen_row = fb->cursor_row - fb->row_offset + 1;  /* +1 for tab line */
+        int screen_col = fb->cursor_col - fb->col_offset;
+        printf("\033[%d;%dH", screen_row + 1, screen_col + 1);
     }
+    
+    /* Show cursor */
+    printf("\033[?25h");
     
     fflush(stdout);
 }
