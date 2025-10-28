@@ -56,7 +56,19 @@ GNU ede v1.0
 
 ### Linux
 
+Requires: `gcc`, `make`, `ncurses`, `libdl`
+
 ```bash
+# Debian/Ubuntu
+sudo apt install build-essential libncurses5-dev
+
+# Arch
+sudo pacman -S base-devel ncurses
+
+# Fedora/RHEL
+sudo dnf install gcc make ncurses-devel
+
+# Build and install
 git clone https://github.com/srhs1723/ede.git
 cd ede
 make
@@ -65,19 +77,31 @@ sudo make install
 
 ### Windows
 
+Requires: `mingw-w64` or `msvc`
+
 ```powershell
+# Using MinGW
 git clone https://github.com/srhs1723/ede.git
 cd ede
 mingw32-make -f Makefile.win
+
+# Using MSVC
+cl /O2 ede.c /Fe:ede.exe
 ```
+
+**Note:** Windows version uses `ede.c` with native Win32 API. Linux/Termux use `linux_and_termux_ede.c` with ncurses.
 
 ### Termux (Android)
 
+Requires: `clang`, `make`, `ncurses`, `libdl`
+
 ```bash
-pkg install git clang make
+pkg update
+pkg install git clang make ncurses
 git clone https://github.com/srhs1723/ede.git
 cd ede
 make
+make install  # No sudo needed in Termux
 ```
 
 ## 🎮 Usage

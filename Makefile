@@ -2,9 +2,9 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -std=c11
-LDFLAGS = -ldl
+LDFLAGS = -lncurses -ldl -lpthread
 TARGET = ede
-SRC = ede.c
+SRC = linux_and_termux_ede.c
 PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
 
@@ -18,19 +18,19 @@ endif
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	@echo "Building $(TARGET)..."
+	@echo "Building $(TARGET) for Linux/Termux..."
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
-	@echo "Build complete!"
+	@echo "Build complete! Run with ./$(TARGET)"
 
 clean:
 	@echo "Cleaning..."
-	rm -f $(TARGET) *.o *.emod
+	rm -f $(TARGET) *.o *.emod *.so
 
 install: $(TARGET)
 	@echo "Installing to $(BINDIR)..."
 	install -d $(BINDIR)
 	install -m 755 $(TARGET) $(BINDIR)/$(TARGET)
-	@echo "Done!"
+	@echo "Done! Run with: ede"
 
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)
