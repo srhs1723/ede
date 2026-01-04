@@ -6,8 +6,7 @@
 
 ## Features
 
-### Core Capabilities
-- ✅ **Bare metal terminal control** - No ncurses, windows.h, or conio.h dependencies
+### Core Capabilitties
 - ✅ **Cross-platform** - Windows, Linux, macOS, and Android support
 - ✅ **GNU GPL v3** licensed
 - ✅ **Syntax highlighting** - C/C++, Python, JavaScript
