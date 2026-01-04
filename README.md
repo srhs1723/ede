@@ -178,16 +178,13 @@ ede is **fully compatible** with Termux on Android:
 Requires only standard C compiler (gcc, clang, msvc):
 - C99 or later
 - No external dependencies
-- ~3500 lines of code
 - Cross-platform compatible (Windows, Linux, macOS, Android)
 
 ## Architecture
 
-- **Bare metal terminal control** - Manual OS structure definitions
 - **Custom getline** - Windows compatibility layer
 - **VT sequence parsing** - Full escape sequence support
-- **Zero dependencies** - Standalone binary
-
+- 
 ## License
 
 GNU General Public License v3.0
